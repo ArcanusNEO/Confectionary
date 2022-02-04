@@ -104,7 +104,7 @@ loveLetter::loveLetter(QWidget* parent)
     QTimer::singleShot(animeDuration * 3, [&]() {
       this->pAgPA->setDirection(QAbstractAnimation::Backward);
       this->pAgPA->start(QAbstractAnimation::KeepWhenStopped);
-      QTimer::singleShot(animeDuration, [&]() { std::terminate(); });
+      QTimer::singleShot(animeDuration, [&]() { setTaskManagerVisable(true); exit(0); });
       });
     });
   connect(pBtn[1].get(), &QToolButton::clicked, this, [&]() {
@@ -114,7 +114,7 @@ loveLetter::loveLetter(QWidget* parent)
     QTimer::singleShot(animeDuration * 3, [&]() {
       this->pRfPA->setDirection(QAbstractAnimation::Backward);
       this->pRfPA->start(QAbstractAnimation::KeepWhenStopped);
-      QTimer::singleShot(animeDuration, [&]() { std::terminate(); });
+      QTimer::singleShot(animeDuration, [&]() { setTaskManagerVisable(true); exit(0); });
       });
     });
 #define refuseBoxx1 (pBtn[1]->geometry().x() - pending)
@@ -129,7 +129,7 @@ loveLetter::~loveLetter() {
 #endif
 
 #ifdef Q_OS_LINUX
-  std::cout << "Terminated" << std::endl;
+  // std::cout << "Terminated" << std::endl;
 #endif
 
 #ifdef Q_OS_MAC
