@@ -72,7 +72,7 @@ loveLetter::loveLetter(QWidget* parent)
     this->hide();
     this->pAgree->show();
     this->ppa->start(QAbstractAnimation::KeepWhenStopped);
-    QTimer::singleShot(animeDuration * 2, [&]() {
+    QTimer::singleShot(animeDuration * 3, [&]() {
       this->ppa->setDirection(QAbstractAnimation::Backward);
       this->ppa->start(QAbstractAnimation::KeepWhenStopped);
       QTimer::singleShot(animeDuration, [&]() { exit(0); });
