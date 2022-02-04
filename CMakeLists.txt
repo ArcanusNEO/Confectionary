@@ -27,6 +27,8 @@ qt5_add_resources(QRC_FILES pic/pic.qrc)
 set(PROJECT_SOURCES
         src/main.cc
         src/loveLetter.cc
+        src/agree.cc
+        inc/agree.hh
         inc/loveLetter.hh
         ${TS_FILES}
         ${QRC_FILES}

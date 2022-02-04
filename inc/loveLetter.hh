@@ -7,6 +7,7 @@
 #include <QMovie>
 #include <memory>
 #include <random>
+#include "agree.hh"
 
 class loveLetter : public QWidget {
   Q_OBJECT
@@ -23,5 +24,6 @@ private:
   std::unique_ptr<QToolButton> pBtn[2];
   std::unique_ptr<QLabel> pLb;
   std::unique_ptr<QMovie> loveGif;
+  std::unique_ptr<agree> pAgree;
   int whichEdge(int x, int y);
 };

@@ -52,6 +52,11 @@ loveLetter::loveLetter(QWidget* parent)
   pBtn[1]->setText(tr("我不要～"));
   std::random_device rd;
   srand(rd());
+  connect(pBtn[0].get(), &QToolButton::clicked, this, [&]() {
+    this->pAgree.reset(new agree);
+    this->pAgree->show();
+    this->hide();
+    });
 #define refuseBoxx1 (pBtn[1]->geometry().x() - pending)
 #define refuseBoxx2 (pBtn[1]->geometry().x() + btnWidth + pending)
 #define refuseBoxy1 (pBtn[1]->geometry().y() - pending)
