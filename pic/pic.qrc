@@ -3,7 +3,10 @@
       <file alias="btn0">btn0.png</file>
       <file alias="btn1">btn1.png</file>
       <file alias="agree">agree.gif</file>
-      <file alias="love">biu-love.gif</file>
+      <file alias="biu-love">biu-love.gif</file>
       <file alias="flower">flower.gif</file>
+      <file alias="love">love.png</file>
+      <file alias="heart">heart.png</file>
+      <file alias="cry">cry.png</file>
    </qresource>
 </RCC>

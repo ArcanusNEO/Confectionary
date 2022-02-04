@@ -1,5 +1,6 @@
 #include "agree.hh"
 #include <QPixmap>
+#include <QIcon>
 #include <QApplication>
 #include <QScreen>
 #include <QCloseEvent>
@@ -10,6 +11,7 @@
 enum { windowWidth = 200, windowHeight = 200 };
 agree::agree(QWidget* parent)
   : QWidget(parent) {
+  setWindowIcon(QIcon(":/pic/heart"));
   setWindowFlags(windowFlags() | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
   setFixedSize(windowWidth, windowHeight);
   auto scrGeo = QGuiApplication::primaryScreen()->availableGeometry();

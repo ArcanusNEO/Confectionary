@@ -32,6 +32,7 @@ loveLetter::loveLetter(QWidget* parent)
 #ifdef Q_OS_MAC
 
 #endif
+  setWindowIcon(QIcon(":/pic/love"));
   setWindowFlags(windowFlags() | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
   setFixedSize(windowWidth, windowHeight);
   auto scrGeo = QGuiApplication::primaryScreen()->availableGeometry();
@@ -56,7 +57,7 @@ loveLetter::loveLetter(QWidget* parent)
   pTxt2->setText(tr("        那么，你愿意嫁给我吗？"));
   pFrom->setText(tr("你的大笨狗"));
   pLb->setFixedSize(loveWidth, loveHeight);
-  pLoveGif.reset(new QMovie(":/pic/love"));
+  pLoveGif.reset(new QMovie(":/pic/biu-love"));
   pLb->setMovie(pLoveGif.get());
   pLoveGif->start();
   pLb->setGeometry((windowWidth - loveWidth) / 2, textLineHeight * 2, 0, 0);
