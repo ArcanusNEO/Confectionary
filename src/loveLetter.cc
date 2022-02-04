@@ -44,7 +44,7 @@ loveLetter::loveLetter(QWidget* parent)
   pTo->setGeometry(5, 0, 0, 0);
   pFrom->setGeometry(5, textLabelHeight + loveHeight, 0, 0);
   pTo->setText(tr("亲爱的小猫咪：\n\t我为你带来了许多好吃的小鱼干"));
-  pFrom->setText(tr("\t所以，你能嫁给我吗？\n你的大笨狗"));
+  pFrom->setText(tr("\t那么，你能嫁给我吗？\n你的大笨狗"));
   pLb->setFixedSize(loveWidth, loveHeight);
   pLoveGif.reset(new QMovie(":/pic/love"));
   pLb->setMovie(pLoveGif.get());
