@@ -11,6 +11,9 @@ mainWidget::mainWidget(QWidget* parent)
   : QWidget(parent) {
   setWindowFlags(windowFlags() | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
   setFixedSize(windowWidth, windowHeight);
+  auto scrGeo = QGuiApplication::primaryScreen()->availableGeometry();
+  auto cx = (scrGeo.x() + scrGeo.width()) / 2, cy = (scrGeo.y() + scrGeo.height()) / 2;
+  setGeometry(cx - windowWidth / 2, cy - windowHeight / 2, 0, 0);
   setMouseTracking(true);
   for (int i = 0; i < 2; ++i) {
     pBtn[i].reset(new QToolButton(this));
