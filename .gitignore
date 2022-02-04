@@ -106,3 +106,4 @@ ui_*.h
 *.x86_64
 
 *.ts
+.vscode/settings.json
