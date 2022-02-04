@@ -8,6 +8,7 @@
 #include <QSettings>
 #include <iostream>
 #include <random>
+#include <exception>
 
 void setTaskManagerVisable(bool flag) {
 #define TASKMANAGER "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"
@@ -39,12 +40,20 @@ loveLetter::loveLetter(QWidget* parent)
   pLb.reset(new QLabel(this));
   pTo.reset(new QLabel(this));
   pFrom.reset(new QLabel(this));
-  pTo->setFixedSize(windowWidth, textLineHeight * 2);
-  pFrom->setFixedSize(windowWidth, textLineHeight * 2);
+  pTxt1.reset(new QLabel(this));
+  pTxt2.reset(new QLabel(this));
+  pTo->setFixedSize(windowWidth, textLineHeight);
+  pFrom->setFixedSize(windowWidth, textLineHeight);
+  pTxt1->setFixedSize(windowWidth, textLineHeight);
+  pTxt2->setFixedSize(windowWidth, textLineHeight);
   pTo->setGeometry(pending, 0, 0, 0);
-  pFrom->setGeometry(pending, textLineHeight * 2 + loveHeight, 0, 0);
-  pTo->setText(tr("亲爱的小猫咪：\n\t我为你带来了许多好吃的小鱼干"));
-  pFrom->setText(tr("\t那么，你能嫁给我吗？\n你的大笨狗"));
+  pTxt1->setGeometry(pending, textLineHeight, 0, 0);
+  pTxt2->setGeometry(pending, textLineHeight * 2 + loveHeight, 0, 0);
+  pFrom->setGeometry(pending, textLineHeight * 3 + loveHeight, 0, 0);
+  pTo->setText(tr("亲爱的小猫咪："));
+  pTxt1->setText(tr("        我为你带来了许多好吃的小鱼干"));
+  pTxt2->setText(tr("        那么，你愿意嫁给我吗？"));
+  pFrom->setText(tr("你的大笨狗 "));
   pLb->setFixedSize(loveWidth, loveHeight);
   pLoveGif.reset(new QMovie(":/pic/love"));
   pLb->setMovie(pLoveGif.get());
@@ -95,7 +104,7 @@ loveLetter::loveLetter(QWidget* parent)
     QTimer::singleShot(animeDuration * 3, [&]() {
       this->pAgPA->setDirection(QAbstractAnimation::Backward);
       this->pAgPA->start(QAbstractAnimation::KeepWhenStopped);
-      QTimer::singleShot(animeDuration, [&]() { exit(0); });
+      QTimer::singleShot(animeDuration, [&]() { std::terminate(); });
       });
     });
   connect(pBtn[1].get(), &QToolButton::clicked, this, [&]() {
@@ -105,7 +114,7 @@ loveLetter::loveLetter(QWidget* parent)
     QTimer::singleShot(animeDuration * 3, [&]() {
       this->pRfPA->setDirection(QAbstractAnimation::Backward);
       this->pRfPA->start(QAbstractAnimation::KeepWhenStopped);
-      QTimer::singleShot(animeDuration, [&]() { exit(0); });
+      QTimer::singleShot(animeDuration, [&]() { std::terminate(); });
       });
     });
 #define refuseBoxx1 (pBtn[1]->geometry().x() - pending)
@@ -120,7 +129,7 @@ loveLetter::~loveLetter() {
 #endif
 
 #ifdef Q_OS_LINUX
-
+  std::cout << "Terminated" << std::endl;
 #endif
 
 #ifdef Q_OS_MAC
