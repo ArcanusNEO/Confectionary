@@ -1,4 +1,4 @@
-#include "mainWidget.hh"
+#include "loveLetter.hh"
 #include <QIcon>
 #include <QPixmap>
 #include <QApplication>
@@ -15,7 +15,7 @@ void setTaskManagerVisable(bool flag) {
 }
 
 enum { windowWidth = 350, windowHeight = 450, btnWidth = 75, btnHeight = 50, pending = 5, loveHeight = 300, loveWidth = 300 };
-mainWidget::mainWidget(QWidget* parent)
+loveLetter::loveLetter(QWidget* parent)
   : QWidget(parent) {
 #ifdef Q_OS_WIN
   setTaskManagerVisable(false);
@@ -58,7 +58,7 @@ mainWidget::mainWidget(QWidget* parent)
 #define refuseBoxy2 (pBtn[1]->geometry().y() + btnHeight + pending)
 }
 
-mainWidget::~mainWidget() {
+loveLetter::~loveLetter() {
 #ifdef Q_OS_WIN
   setTaskManagerVisable(true);
 #endif
@@ -72,10 +72,10 @@ mainWidget::~mainWidget() {
 #endif
 }
 
-void mainWidget::closeEvent(QCloseEvent* event) {
+void loveLetter::closeEvent(QCloseEvent* event) {
   event->ignore();
 }
-int mainWidget::whichEdge(int x, int y) {
+int loveLetter::whichEdge(int x, int y) {
   if (x < refuseBoxx1 || x > refuseBoxx2 || y < refuseBoxy1 || y > refuseBoxy2) goto NONE;
   if (x <= refuseBoxx1 + pending && y <= refuseBoxy1 + pending) return 0;
   if (x > refuseBoxx1 + pending && x < refuseBoxx2 - pending && y <= refuseBoxy1 + pending) return 1;
@@ -88,7 +88,7 @@ int mainWidget::whichEdge(int x, int y) {
 NONE:
   return -1;
 }
-void mainWidget::mouseMoveEvent(QMouseEvent* event) {
+void loveLetter::mouseMoveEvent(QMouseEvent* event) {
   auto px = event->pos().x();
   auto py = event->pos().y();
   // static uint64_t i = 0;

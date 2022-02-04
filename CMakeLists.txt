@@ -26,8 +26,8 @@ qt5_add_resources(QRC_FILES pic/pic.qrc)
 
 set(PROJECT_SOURCES
         src/main.cc
-        src/mainWidget.cc
-        inc/mainWidget.hh
+        src/loveLetter.cc
+        inc/loveLetter.hh
         ${TS_FILES}
         ${QRC_FILES}
 )

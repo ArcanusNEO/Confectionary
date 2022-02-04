@@ -8,12 +8,12 @@
 #include <memory>
 #include <random>
 
-class mainWidget : public QWidget {
+class loveLetter : public QWidget {
   Q_OBJECT
 
 public:
-  mainWidget(QWidget* parent = nullptr);
-  ~mainWidget();
+  loveLetter(QWidget* parent = nullptr);
+  ~loveLetter();
 
 protected:
   void closeEvent(QCloseEvent* event);

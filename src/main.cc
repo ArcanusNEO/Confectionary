@@ -1,4 +1,4 @@
-#include "mainWidget.hh"
+#include "loveLetter.hh"
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
       break;
     }
   }
-  mainWidget w;
+  loveLetter w;
   w.show();
   return a.exec();
 }
