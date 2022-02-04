@@ -16,7 +16,7 @@ void setTaskManagerVisable(bool flag) {
   else settings->setValue("DisableTaskMgr", "1");
 }
 
-enum { windowWidth = 350, windowHeight = 450, btnWidth = 75, btnHeight = 50, pending = 5, loveHeight = 300, loveWidth = 300, animeDuration = 3000 };
+enum { textLabelHeight = 50, windowWidth = 350, windowHeight = 460, btnWidth = 75, btnHeight = 50, pending = 5, loveHeight = 300, loveWidth = 300, animeDuration = 3000 };
 loveLetter::loveLetter(QWidget* parent)
   : QWidget(parent) {
 #ifdef Q_OS_WIN
@@ -37,11 +37,19 @@ loveLetter::loveLetter(QWidget* parent)
   setGeometry(cx - windowWidth / 2, cy - windowHeight / 2, 0, 0);
   setMouseTracking(true);
   pLb.reset(new QLabel(this));
+  pTo.reset(new QLabel(this));
+  pFrom.reset(new QLabel(this));
+  pTo->setFixedSize(windowWidth, textLabelHeight);
+  pFrom->setFixedSize(windowWidth, textLabelHeight);
+  pTo->setGeometry(5, 0, 0, 0);
+  pFrom->setGeometry(5, textLabelHeight + loveHeight, 0, 0);
+  pTo->setText(tr("亲爱的小猫咪：\n\t我为你带来了许多好吃的小鱼干"));
+  pFrom->setText(tr("\t所以，你能嫁给我吗？\n你的大笨狗"));
   pLb->setFixedSize(loveWidth, loveHeight);
   pLoveGif.reset(new QMovie(":/pic/love"));
   pLb->setMovie(pLoveGif.get());
   pLoveGif->start();
-  pLb->setGeometry((windowWidth - loveWidth) / 2, 0, 0, 0);
+  pLb->setGeometry((windowWidth - loveWidth) / 2, textLabelHeight, 0, 0);
   for (int i = 0; i < 2; ++i) {
     pBtn[i].reset(new QToolButton(this));
     pBtn[i]->setFixedSize(btnWidth, btnHeight);

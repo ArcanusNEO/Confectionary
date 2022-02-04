@@ -26,7 +26,7 @@ protected:
 
 private:
   std::unique_ptr<QToolButton> pBtn[2];
-  std::unique_ptr<QLabel> pLb;
+  std::unique_ptr<QLabel> pLb, pTo, pFrom;
   std::unique_ptr<QMovie> pLoveGif;
   std::unique_ptr<agree> pAgree;
   std::unique_ptr<refuse> pRefuse;
