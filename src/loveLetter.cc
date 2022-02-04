@@ -201,5 +201,5 @@ void loveLetter::mouseMoveEvent(QMouseEvent* event) {
   x = min(x, sx + sw);
   y = max(y, sy);
   y = min(y, sy + sh);
-  // setGeometry(x, y, 0, 0);
+  setGeometry(x, y, 0, 0);
 }
