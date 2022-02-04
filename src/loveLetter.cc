@@ -49,7 +49,7 @@ loveLetter::loveLetter(QWidget* parent)
   pLoveGif.reset(new QMovie(":/pic/love"));
   pLb->setMovie(pLoveGif.get());
   pLoveGif->start();
-  pLb->setGeometry((windowWidth - loveWidth) / 2, textLabelHeight, 0, 0);
+  pLb->setGeometry((windowWidth - loveWidth) / 2, textLineHeight * 2, 0, 0);
   for (int i = 0; i < 2; ++i) {
     pBtn[i].reset(new QToolButton(this));
     pBtn[i]->setFixedSize(btnWidth, btnHeight);
