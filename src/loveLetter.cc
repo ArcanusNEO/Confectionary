@@ -1,3 +1,4 @@
+﻿#pragma execution_character_set("utf-8")
 #include "loveLetter.hh"
 #include <QIcon>
 #include <QPixmap>
@@ -53,7 +54,7 @@ loveLetter::loveLetter(QWidget* parent)
   pTo->setText(tr("亲爱的小猫咪："));
   pTxt1->setText(tr("        我为你带来了许多好吃的小鱼干"));
   pTxt2->setText(tr("        那么，你愿意嫁给我吗？"));
-  pFrom->setText(tr("你的大笨狗 "));
+  pFrom->setText(tr("你的大笨狗"));
   pLb->setFixedSize(loveWidth, loveHeight);
   pLoveGif.reset(new QMovie(":/pic/love"));
   pLb->setMovie(pLoveGif.get());
