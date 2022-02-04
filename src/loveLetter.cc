@@ -60,21 +60,43 @@ loveLetter::loveLetter(QWidget* parent)
   pAgree->setAutoFillBackground(false);
   pAgree->setAttribute(Qt::WA_TranslucentBackground, true);
   pAgree->hide();
-  pEff.reset(new QGraphicsOpacityEffect(this->pAgree.get()));
-  pEff->setOpacity(1);
-  pAgree->setGraphicsEffect(pEff.get());
-  ppa.reset(new QPropertyAnimation(pEff.get(), "opacity", this->pAgree.get()));
-  ppa->setEasingCurve(QEasingCurve::InOutQuad);
-  ppa->setDuration(animeDuration);
-  ppa->setStartValue(0);
-  ppa->setEndValue(1);
+  pAgEff.reset(new QGraphicsOpacityEffect(this->pAgree.get()));
+  pAgEff->setOpacity(1);
+  pAgree->setGraphicsEffect(pAgEff.get());
+  pAgPA.reset(new QPropertyAnimation(pAgEff.get(), "opacity", this->pAgree.get()));
+  pAgPA->setEasingCurve(QEasingCurve::InOutQuad);
+  pAgPA->setDuration(animeDuration);
+  pAgPA->setStartValue(0);
+  pAgPA->setEndValue(1);
+  pRefuse.reset(new refuse);
+  pRefuse->setAutoFillBackground(false);
+  pRefuse->setAttribute(Qt::WA_TranslucentBackground, true);
+  pRefuse->hide();
+  pRfEff.reset(new QGraphicsOpacityEffect(this->pRefuse.get()));
+  pRfEff->setOpacity(1);
+  pRefuse->setGraphicsEffect(pRfEff.get());
+  pRfPA.reset(new QPropertyAnimation(pRfEff.get(), "opacity", this->pRefuse.get()));
+  pRfPA->setEasingCurve(QEasingCurve::InOutQuad);
+  pRfPA->setDuration(animeDuration);
+  pRfPA->setStartValue(0);
+  pRfPA->setEndValue(1);
   connect(pBtn[0].get(), &QToolButton::clicked, this, [&]() {
     this->hide();
     this->pAgree->show();
-    this->ppa->start(QAbstractAnimation::KeepWhenStopped);
+    this->pAgPA->start(QAbstractAnimation::KeepWhenStopped);
     QTimer::singleShot(animeDuration * 3, [&]() {
-      this->ppa->setDirection(QAbstractAnimation::Backward);
-      this->ppa->start(QAbstractAnimation::KeepWhenStopped);
+      this->pAgPA->setDirection(QAbstractAnimation::Backward);
+      this->pAgPA->start(QAbstractAnimation::KeepWhenStopped);
+      QTimer::singleShot(animeDuration, [&]() { exit(0); });
+      });
+    });
+  connect(pBtn[1].get(), &QToolButton::clicked, this, [&]() {
+    this->hide();
+    this->pRefuse->show();
+    this->pRfPA->start(QAbstractAnimation::KeepWhenStopped);
+    QTimer::singleShot(animeDuration * 3, [&]() {
+      this->pRfPA->setDirection(QAbstractAnimation::Backward);
+      this->pRfPA->start(QAbstractAnimation::KeepWhenStopped);
       QTimer::singleShot(animeDuration, [&]() { exit(0); });
       });
     });
@@ -179,5 +201,5 @@ void loveLetter::mouseMoveEvent(QMouseEvent* event) {
   x = min(x, sx + sw);
   y = max(y, sy);
   y = min(y, sy + sh);
-  setGeometry(x, y, 0, 0);
+  // setGeometry(x, y, 0, 0);
 }

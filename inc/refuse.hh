@@ -5,12 +5,12 @@
 #include <QPaintEvent>
 #include <memory>
 
-class agree : public QWidget {
+class refuse : public QWidget {
   Q_OBJECT
 
 public:
-  agree(QWidget* parent = nullptr);
-  ~agree();
+  refuse(QWidget* parent = nullptr);
+  ~refuse();
 
 protected:
   void closeEvent(QCloseEvent* event);

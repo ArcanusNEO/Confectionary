@@ -29,6 +29,8 @@ set(PROJECT_SOURCES
         src/loveLetter.cc
         src/agree.cc
         inc/agree.hh
+        src/refuse.cc
+        inc/refuse.hh
         inc/loveLetter.hh
         ${TS_FILES}
         ${QRC_FILES}

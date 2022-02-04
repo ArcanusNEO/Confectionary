@@ -11,6 +11,7 @@
 #include <memory>
 #include <random>
 #include "agree.hh"
+#include "refuse.hh"
 
 class loveLetter : public QWidget {
   Q_OBJECT
@@ -28,7 +29,8 @@ private:
   std::unique_ptr<QLabel> pLb;
   std::unique_ptr<QMovie> loveGif;
   std::unique_ptr<agree> pAgree;
-  std::unique_ptr<QGraphicsOpacityEffect> pEff;
-  std::unique_ptr<QPropertyAnimation> ppa;
+  std::unique_ptr<refuse> pRefuse;
+  std::unique_ptr<QGraphicsOpacityEffect> pAgEff, pRfEff;
+  std::unique_ptr<QPropertyAnimation> pAgPA, pRfPA;
   int whichEdge(int x, int y);
 };
