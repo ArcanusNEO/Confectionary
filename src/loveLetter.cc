@@ -41,8 +41,8 @@ loveLetter::loveLetter(QWidget* parent)
   pFrom.reset(new QLabel(this));
   pTo->setFixedSize(windowWidth, textLineHeight * 2);
   pFrom->setFixedSize(windowWidth, textLineHeight * 2);
-  pTo->setGeometry(5, 0, 0, 0);
-  pFrom->setGeometry(5, textLineHeight * 2 + loveHeight, 0, 0);
+  pTo->setGeometry(pending, 0, 0, 0);
+  pFrom->setGeometry(pending, textLineHeight * 2 + loveHeight, 0, 0);
   pTo->setText(tr("亲爱的小猫咪：\n\t我为你带来了许多好吃的小鱼干"));
   pFrom->setText(tr("\t那么，你能嫁给我吗？\n你的大笨狗"));
   pLb->setFixedSize(loveWidth, loveHeight);
