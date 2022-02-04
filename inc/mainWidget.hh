@@ -2,7 +2,7 @@
 
 #include <QWidget>
 #include <QCloseEvent>
-#include <QPushButton>
+#include <QToolButton>
 #include <memory>
 
 class mainWidget : public QWidget {
@@ -16,5 +16,5 @@ protected:
   void closeEvent(QCloseEvent* event);
 
 private:
-  std::unique_ptr<QPushButton> pBtn[2];
+  std::unique_ptr<QToolButton> pBtn[2];
 };
