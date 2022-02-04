@@ -24,9 +24,9 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
 set(TS_FILES Confectionary_zh_CN.ts)
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainWidget.cc
-        mainWidget.hh
+        src/main.cc
+        src/mainWidget.cc
+        inc/mainWidget.hh
         ${TS_FILES}
 )
 
