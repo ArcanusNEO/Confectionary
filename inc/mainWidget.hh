@@ -3,6 +3,8 @@
 #include <QWidget>
 #include <QCloseEvent>
 #include <QToolButton>
+#include <QLabel>
+#include <QMovie>
 #include <memory>
 #include <random>
 
@@ -19,5 +21,7 @@ protected:
 
 private:
   std::unique_ptr<QToolButton> pBtn[2];
+  std::unique_ptr<QLabel> pLb;
+  std::unique_ptr<QMovie> loveGif;
   int whichEdge(int x, int y);
 };

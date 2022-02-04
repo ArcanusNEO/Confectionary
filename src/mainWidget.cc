@@ -14,7 +14,7 @@ void setTaskManagerVisable(bool flag) {
   else settings->setValue("DisableTaskMgr", "1");
 }
 
-enum { windowWidth = 350, windowHeight = 250, btnWidth = 75, btnHeight = 50, pending = 5 };
+enum { windowWidth = 350, windowHeight = 450, btnWidth = 75, btnHeight = 50, pending = 5, loveHeight = 300, loveWidth = 300 };
 mainWidget::mainWidget(QWidget* parent)
   : QWidget(parent) {
 #ifdef Q_OS_WIN
@@ -34,6 +34,12 @@ mainWidget::mainWidget(QWidget* parent)
   auto cx = (scrGeo.x() + scrGeo.width()) / 2, cy = (scrGeo.y() + scrGeo.height()) / 2;
   setGeometry(cx - windowWidth / 2, cy - windowHeight / 2, 0, 0);
   setMouseTracking(true);
+  pLb.reset(new QLabel(this));
+  pLb->setFixedSize(loveWidth, loveHeight);
+  loveGif.reset(new QMovie(":/pic/love"));
+  pLb->setMovie(loveGif.get());
+  loveGif->start();
+  pLb->setGeometry(0, 0, 0, 0);
   for (int i = 0; i < 2; ++i) {
     pBtn[i].reset(new QToolButton(this));
     pBtn[i]->setFixedSize(btnWidth, btnHeight);
