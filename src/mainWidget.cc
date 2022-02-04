@@ -9,7 +9,7 @@
 enum { windowWidth = 350, windowHeight = 250, btnWidth = 75, btnHeight = 50, pending = 5 };
 mainWidget::mainWidget(QWidget* parent)
   : QWidget(parent) {
-  setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
+  setWindowFlags(windowFlags() | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
   setFixedSize(windowWidth, windowHeight);
   setMouseTracking(true);
   for (int i = 0; i < 2; ++i) {
