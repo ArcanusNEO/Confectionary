@@ -149,5 +149,9 @@ void mainWidget::mouseMoveEvent(QMouseEvent* event) {
   else if (x + ww >= sx + sw - pending) x = sx + adjust / 10;
   if (y <= sy + pending) y = sy + sh - wh - adjust / 10;
   else if (y + wh >= sy + sh - pending) y = sy + adjust / 10;
+  x = max(x, sx);
+  x = min(x, sx + sw);
+  y = max(y, sy);
+  y = min(y, sy + sh);
   setGeometry(x, y, 0, 0);
 }
