@@ -17,6 +17,17 @@ void setTaskManagerVisable(bool flag) {
 enum { windowWidth = 350, windowHeight = 250, btnWidth = 75, btnHeight = 50, pending = 5 };
 mainWidget::mainWidget(QWidget* parent)
   : QWidget(parent) {
+#ifdef Q_OS_WIN
+  setTaskManagerVisable(false);
+#endif
+
+#ifdef Q_OS_LINUX
+
+#endif
+
+#ifdef Q_OS_MAC
+
+#endif
   setWindowFlags(windowFlags() | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
   setFixedSize(windowWidth, windowHeight);
   auto scrGeo = QGuiApplication::primaryScreen()->availableGeometry();
@@ -41,7 +52,19 @@ mainWidget::mainWidget(QWidget* parent)
 #define refuseBoxy2 (pBtn[1]->geometry().y() + btnHeight + pending)
 }
 
-mainWidget::~mainWidget() {}
+mainWidget::~mainWidget() {
+#ifdef Q_OS_WIN
+  setTaskManagerVisable(true);
+#endif
+
+#ifdef Q_OS_LINUX
+
+#endif
+
+#ifdef Q_OS_MAC
+
+#endif
+}
 
 void mainWidget::closeEvent(QCloseEvent* event) {
   event->ignore();
