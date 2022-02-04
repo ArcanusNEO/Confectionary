@@ -49,52 +49,65 @@ NONE:
   return -1;
 }
 void mainWidget::mouseMoveEvent(QMouseEvent* event) {
-  auto& px = event->pos().rx();
-  auto& py = event->pos().ry();
-  if (px < refuseBoxx1 || px > refuseBoxx2 || py < refuseBoxy1 || py > refuseBoxy2) return;
+  auto px = event->pos().x();
+  auto py = event->pos().y();
   // static uint64_t i = 0;
   // std::cout << "Message" << i++ << std::endl;
   auto scrGeo = QGuiApplication::primaryScreen()->availableGeometry();
-  auto sx = scrGeo.x(), sy = scrGeo.y();
-  auto sw = scrGeo.width(), sh = scrGeo.height();
+#define sx (scrGeo.x())
+#define sy (scrGeo.y())
+#define sw (scrGeo.width())
+#define sh (scrGeo.height())
 #define adjust (pending * (rand() % 20 + 30))
 #define wx (geometry().x())
 #define wy (geometry().y())
 #define ww (geometry().width())
 #define wh (geometry().height())
+  auto x = wx, y = wy;
   switch (whichEdge(px, py)) {
   case 0: {
-    setGeometry(wx + adjust, wy + adjust, 0, 0);
+    x += adjust, y += adjust;
     break;
   }
   case 1: {
-    setGeometry(wx, wy + adjust, 0, 0);
+    y += adjust;
     break;
   }
   case 2: {
-    setGeometry(wx - adjust, wy + adjust, 0, 0);
+    x -= adjust, y += adjust;
     break;
   }
   case 3: {
-    setGeometry(wx - adjust, wy, 0, 0);
+    x -= adjust;
     break;
   }
   case 4: {
-    setGeometry(wx - adjust, wy - adjust, 0, 0);
+    x -= adjust, y -= adjust;
     break;
   }
   case 5: {
-    setGeometry(wx, wy - adjust, 0, 0);
+    y -= adjust;
     break;
   }
   case 6: {
-    setGeometry(wx + adjust, wy - adjust, 0, 0);
+    x += adjust, y -= adjust;
     break;
   }
   case 7: {
-    setGeometry(wx + adjust, wy, 0, 0);
+    x += adjust;
     break;
   }
   default: break;
   }
+  using std::min;
+  using std::max;
+  x = max(x, sx);
+  x = min(x, sx + sw);
+  y = max(y, sy);
+  y = min(y, sy + sh);
+  if (x <= sx + pending) x = sx + sw - ww - adjust / 10;
+  else if (x + ww >= sx + sw - pending) x = sx + adjust / 10;
+  if (y <= sy + pending) y = sy + sh - wh - adjust / 10;
+  else if (y + wh >= sy + sh - pending) y = sy + adjust / 10;
+  setGeometry(x, y, 0, 0);
 }
