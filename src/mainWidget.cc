@@ -16,7 +16,7 @@ mainWidget::mainWidget(QWidget* parent)
     pBtn[i].reset(new QToolButton(this));
     pBtn[i]->setFixedSize(btnWidth, btnHeight);
     pBtn[i]->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    pBtn[i]->setIcon(QIcon(QString("pic/btn") + QString(i + '0') + QString(".png")));
+    pBtn[i]->setIcon(QIcon(QString(":/pic/btn") + QString(i + '0')));
   }
   pBtn[0]->setGeometry((windowWidth / 2 - btnWidth) / 2, windowHeight - btnHeight - pending, 0, 0);
   pBtn[0]->setText(tr("我愿意！"));

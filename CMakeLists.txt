@@ -22,12 +22,14 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
 
 set(TS_FILES Confectionary_zh_CN.ts)
+qt5_add_resources(QRC_FILES pic/pic.qrc)
 
 set(PROJECT_SOURCES
         src/main.cc
         src/mainWidget.cc
         inc/mainWidget.hh
         ${TS_FILES}
+        ${QRC_FILES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
