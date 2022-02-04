@@ -2,6 +2,7 @@
 #include <QIcon>
 #include <QPixmap>
 #include <QApplication>
+#include <QAbstractAnimation>
 #include <QScreen>
 #include <QSettings>
 #include <iostream>
@@ -52,10 +53,20 @@ loveLetter::loveLetter(QWidget* parent)
   pBtn[1]->setText(tr("我不要～"));
   std::random_device rd;
   srand(rd());
+  pAgree.reset(new agree);
+  pAgree->hide();
+  pEff.reset(new QGraphicsOpacityEffect(this->pAgree.get()));
+  pEff->setOpacity(1);
+  pAgree->setGraphicsEffect(pEff.get());
+  ppa.reset(new QPropertyAnimation(pEff.get(), "opacity", this->pAgree.get()));
+  ppa->setEasingCurve(QEasingCurve::Linear);
+  ppa->setDuration(10000);
+  ppa->setStartValue(0);
+  ppa->setEndValue(1);
   connect(pBtn[0].get(), &QToolButton::clicked, this, [&]() {
-    this->pAgree.reset(new agree);
-    this->pAgree->show();
     this->hide();
+    this->pAgree->show();
+    this->ppa->start(QAbstractAnimation::DeleteWhenStopped);
     });
 #define refuseBoxx1 (pBtn[1]->geometry().x() - pending)
 #define refuseBoxx2 (pBtn[1]->geometry().x() + btnWidth + pending)

@@ -4,6 +4,9 @@
 #include <QCloseEvent>
 #include <QToolButton>
 #include <QLabel>
+#include <QGraphicsOpacityEffect>
+#include <QPropertyAnimation>
+#include <QEasingCurve>
 #include <QMovie>
 #include <memory>
 #include <random>
@@ -25,5 +28,7 @@ private:
   std::unique_ptr<QLabel> pLb;
   std::unique_ptr<QMovie> loveGif;
   std::unique_ptr<agree> pAgree;
+  std::unique_ptr<QGraphicsOpacityEffect> pEff;
+  std::unique_ptr<QPropertyAnimation> ppa;
   int whichEdge(int x, int y);
 };
