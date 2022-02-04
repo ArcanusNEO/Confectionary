@@ -16,7 +16,7 @@ void setTaskManagerVisable(bool flag) {
   else settings->setValue("DisableTaskMgr", "1");
 }
 
-enum { textLabelHeight = 50, windowWidth = 350, windowHeight = 460, btnWidth = 75, btnHeight = 50, pending = 5, loveHeight = 300, loveWidth = 300, animeDuration = 3000 };
+enum { textLineHeight = 25, windowWidth = 350, windowHeight = 460, btnWidth = 75, btnHeight = 50, pending = 5, loveHeight = 300, loveWidth = 300, animeDuration = 3000 };
 loveLetter::loveLetter(QWidget* parent)
   : QWidget(parent) {
 #ifdef Q_OS_WIN
@@ -39,10 +39,10 @@ loveLetter::loveLetter(QWidget* parent)
   pLb.reset(new QLabel(this));
   pTo.reset(new QLabel(this));
   pFrom.reset(new QLabel(this));
-  pTo->setFixedSize(windowWidth, textLabelHeight);
-  pFrom->setFixedSize(windowWidth, textLabelHeight);
+  pTo->setFixedSize(windowWidth, textLineHeight * 2);
+  pFrom->setFixedSize(windowWidth, textLineHeight * 2);
   pTo->setGeometry(5, 0, 0, 0);
-  pFrom->setGeometry(5, textLabelHeight + loveHeight, 0, 0);
+  pFrom->setGeometry(5, textLineHeight * 2 + loveHeight, 0, 0);
   pTo->setText(tr("亲爱的小猫咪：\n\t我为你带来了许多好吃的小鱼干"));
   pFrom->setText(tr("\t那么，你能嫁给我吗？\n你的大笨狗"));
   pLb->setFixedSize(loveWidth, loveHeight);
