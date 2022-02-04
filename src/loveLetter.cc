@@ -3,6 +3,7 @@
 #include <QPixmap>
 #include <QApplication>
 #include <QAbstractAnimation>
+#include <QTimer>
 #include <QScreen>
 #include <QSettings>
 #include <iostream>
@@ -15,7 +16,7 @@ void setTaskManagerVisable(bool flag) {
   else settings->setValue("DisableTaskMgr", "1");
 }
 
-enum { windowWidth = 350, windowHeight = 450, btnWidth = 75, btnHeight = 50, pending = 5, loveHeight = 300, loveWidth = 300 };
+enum { windowWidth = 350, windowHeight = 450, btnWidth = 75, btnHeight = 50, pending = 5, loveHeight = 300, loveWidth = 300, animeDuration = 3000 };
 loveLetter::loveLetter(QWidget* parent)
   : QWidget(parent) {
 #ifdef Q_OS_WIN
@@ -51,22 +52,31 @@ loveLetter::loveLetter(QWidget* parent)
   pBtn[0]->setText(tr("我愿意！"));
   pBtn[1]->setGeometry(3 * windowWidth / 4 - btnWidth / 2, windowHeight - btnHeight - pending, 0, 0);
   pBtn[1]->setText(tr("我不要～"));
+  pBtn[1]->setFocusPolicy(Qt::FocusPolicy::NoFocus);
+  // pBtn[1]->setDisabled(true);
   std::random_device rd;
   srand(rd());
   pAgree.reset(new agree);
+  pAgree->setAutoFillBackground(false);
+  pAgree->setAttribute(Qt::WA_TranslucentBackground, true);
   pAgree->hide();
   pEff.reset(new QGraphicsOpacityEffect(this->pAgree.get()));
   pEff->setOpacity(1);
   pAgree->setGraphicsEffect(pEff.get());
   ppa.reset(new QPropertyAnimation(pEff.get(), "opacity", this->pAgree.get()));
-  ppa->setEasingCurve(QEasingCurve::Linear);
-  ppa->setDuration(10000);
+  ppa->setEasingCurve(QEasingCurve::InOutQuad);
+  ppa->setDuration(animeDuration);
   ppa->setStartValue(0);
   ppa->setEndValue(1);
   connect(pBtn[0].get(), &QToolButton::clicked, this, [&]() {
     this->hide();
     this->pAgree->show();
-    this->ppa->start(QAbstractAnimation::DeleteWhenStopped);
+    this->ppa->start(QAbstractAnimation::KeepWhenStopped);
+    QTimer::singleShot(animeDuration * 2, [&]() {
+      this->ppa->setDirection(QAbstractAnimation::Backward);
+      this->ppa->start(QAbstractAnimation::KeepWhenStopped);
+      QTimer::singleShot(animeDuration, [&]() { exit(0); });
+      });
     });
 #define refuseBoxx1 (pBtn[1]->geometry().x() - pending)
 #define refuseBoxx2 (pBtn[1]->geometry().x() + btnWidth + pending)
