@@ -13,6 +13,7 @@ void setTaskManagerVisable(bool flag) {
   if (flag) settings->remove("DisableTaskMgr");
   else settings->setValue("DisableTaskMgr", "1");
 }
+
 enum { windowWidth = 350, windowHeight = 250, btnWidth = 75, btnHeight = 50, pending = 5 };
 mainWidget::mainWidget(QWidget* parent)
   : QWidget(parent) {
