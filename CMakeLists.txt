@@ -32,6 +32,7 @@ set(PROJECT_SOURCES
         src/refuse.cc
         inc/refuse.hh
         inc/loveLetter.hh
+        pic/app_win32.rc
         ${TS_FILES}
         ${QRC_FILES}
 )

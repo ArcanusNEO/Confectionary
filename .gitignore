@@ -78,7 +78,7 @@ object_script.*.Release
 *.qmlproject.user
 *.qmlproject.user.*
 qrc_*.cpp
-*.rc
+!*.rc
 *.rej
 *.Release
 *.res
