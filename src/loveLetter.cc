@@ -52,10 +52,10 @@ loveLetter::loveLetter(QWidget* parent)
   pTxt1->setGeometry(pending, textLineHeight, 0, 0);
   pTxt2->setGeometry(pending, textLineHeight * 2 + loveHeight, 0, 0);
   pFrom->setGeometry(pending, textLineHeight * 3 + loveHeight, 0, 0);
-  pTo->setText(tr("亲爱的小猫咪："));
+  pTo->setText(tr("亲爱的卢麒萱小猫咪："));
   pTxt1->setText(tr("        我为你带来了许多好吃的小鱼干"));
   pTxt2->setText(tr("        那么，你愿意嫁给我吗？"));
-  pFrom->setText(tr("你的大笨狗"));
+  pFrom->setText(tr("你的大笨狗丁屹"));
   pLb->setFixedSize(loveWidth, loveHeight);
   pLoveGif.reset(new QMovie(":/pic/biu-love"));
   pLb->setMovie(pLoveGif.get());
@@ -106,7 +106,7 @@ loveLetter::loveLetter(QWidget* parent)
     QTimer::singleShot(animeDuration * 3, [&]() {
       this->pAgPA->setDirection(QAbstractAnimation::Backward);
       this->pAgPA->start(QAbstractAnimation::KeepWhenStopped);
-      QTimer::singleShot(animeDuration, [&]() { setTaskManagerVisable(true); exit(0); });
+      QTimer::singleShot(animeDuration, [&]() { QApplication::quit(); });
       });
     });
   connect(pBtn[1].get(), &QToolButton::clicked, this, [&]() {
@@ -116,7 +116,7 @@ loveLetter::loveLetter(QWidget* parent)
     QTimer::singleShot(animeDuration * 3, [&]() {
       this->pRfPA->setDirection(QAbstractAnimation::Backward);
       this->pRfPA->start(QAbstractAnimation::KeepWhenStopped);
-      QTimer::singleShot(animeDuration, [&]() { setTaskManagerVisable(true); exit(0); });
+      QTimer::singleShot(animeDuration, [&]() { QApplication::quit(); });
       });
     });
 #define refuseBoxx1 (pBtn[1]->geometry().x() - pending)
