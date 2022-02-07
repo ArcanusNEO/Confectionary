@@ -1,26 +1,26 @@
-#include "refuse.hh"
-#include <QPixmap>
-#include <QIcon>
 #include <QApplication>
-#include <QScreen>
 #include <QCloseEvent>
-#include <QPixmap>
+#include <QIcon>
 #include <QPainter>
+#include <QPixmap>
+#include <QScreen>
 #include <iostream>
 
+#include "refuse.hh"
+
 enum { windowWidth = 200, windowHeight = 200 };
-refuse::refuse(QWidget* parent)
-  : QWidget(parent) {
+refuse::refuse(QWidget* parent) : QWidget(parent) {
   setWindowIcon(QIcon(":/pic/cry"));
-  setWindowFlags(windowFlags() | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+  setWindowFlags(windowFlags() | Qt::FramelessWindowHint
+                 | Qt::WindowStaysOnTopHint);
   setFixedSize(windowWidth, windowHeight);
   auto scrGeo = QGuiApplication::primaryScreen()->availableGeometry();
-  auto cx = (scrGeo.x() + scrGeo.width()) / 2, cy = (scrGeo.y() + scrGeo.height()) / 2;
+  auto cx     = (scrGeo.x() + scrGeo.width()) / 2,
+       cy     = (scrGeo.y() + scrGeo.height()) / 2;
   setGeometry(cx - windowWidth / 2, cy - windowHeight / 2, 0, 0);
 }
 
 refuse::~refuse() {
-
 }
 
 void refuse::closeEvent(QCloseEvent* event) {

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <QWidget>
 #include <QLabel>
 #include <QPaintEvent>
+#include <QWidget>
 #include <memory>
 
 class refuse : public QWidget {
